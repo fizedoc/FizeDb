@@ -7,17 +7,13 @@
 	use fize\db\Db;
 
 	$config = [
-		'type'   => 'mysql',
-		'mode'   => 'pdo',
-		'config' => [
-			'host'     => 'localhost',
-			'user'     => 'root',
-			'password' => '123456',
-			'dbname'   => 'gm_test'
-		]
+		'host'     => 'localhost',
+		'user'     => 'root',
+		'password' => '123456',
+		'dbname'   => 'gm_test'
 	];
 
-	new Db($config);
+	new Db('mysql', $config);
 
 	$map2 = [
 		'name' => ['LIKE', '陈峰展%']

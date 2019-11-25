@@ -8,17 +8,13 @@
 
 	//设置默认连接
 	$config = [
-		'type'   => 'mysql',
-		'mode'   => 'pdo',
-		'config' => [
-			'host'     => 'localhost',
-			'user'     => 'root',
-			'password' => '123456',
-			'dbname'   => 'gm_test'
-		]
+		'host'     => 'localhost',
+		'user'     => 'root',
+		'password' => '123456',
+		'dbname'   => 'gm_test'
 	];
 
-	new Db($config);
+	new Db('mysql', $config);
 
 	$data = [
 		'name'     => "!乱/七\八'糟\"的*字?符%串`一#大@堆(123",
@@ -33,4 +29,3 @@
 
 	$id = Db::table('user')->insertGetId($data);
 	var_dump($id);  //自增ID或则序列号
-		

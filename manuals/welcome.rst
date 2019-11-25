@@ -43,7 +43,7 @@ FizeDb 的主要参数分 3 个部分：type 、mode 、config
 2.设置默认连接或者设置新连接
 ----------------------------
 
-使用 `new Db($config)`进行默认连接设置，或者 `Db::connect($config)` 方法设置新连接
+使用 `new Db($type, $config, $mode)`进行默认连接设置，或者 `Db::connect($type, $config, $mode)` 方法设置新连接
 
 3.进行数据库操作
 ----------------
@@ -63,21 +63,17 @@ FizeDb 内置了一系列的方法用于数据库的 `CURD` 等操作。我们�
 
 	//设置默认连接
 	$config = [
-		'type'   => 'mysql',
-		'mode'   => 'pdo',
-		'config' => [
-			'host'     => 'localhost',
-			'user'     => 'root',
-			'password' => '123456',
-			'dbname'   => 'gm_test'
-		]
+		'host'     => 'localhost',
+		'user'     => 'root',
+		'password' => '123456',
+		'dbname'   => 'gm_test'
 	];
 
-	new Db($config);
+	new Db('mysql', $config, 'pdo');
 
 	$rows = Db::table('user')
 		->where([
-			'name' => ['LIKE', '陈某某%']
+			'name' => ['LIKE', '陈峰展%']
 		])
 		->limit(2)
 		->select();
@@ -85,21 +81,17 @@ FizeDb 内置了一系列的方法用于数据库的 `CURD` 等操作。我们�
 
 	//设置新连接
 	$config = [
-		'type'   => 'mysql',
-		'mode'   => 'pdo',
-		'config' => [
-			'host'     => 'localhost',
-			'user'     => 'root',
-			'password' => '123456',
-			'dbname'   => 'gm_test2',
-			'prefix'   => 'gm_'
-		]
+		'host'     => 'localhost',
+		'user'     => 'root',
+		'password' => '123456',
+		'dbname'   => 'gm_test2',
+		'prefix'   => 'gm_'
 	];
-	$db = Db::connect($config);
+	$db = Db::connect('mysql', $config);
 
 	$rows = $db
 		->table('admin')
 		->limit(10)
 		->select();
-		var_dump($rows);
+	var_dump($rows);
 		
